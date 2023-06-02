@@ -4,6 +4,7 @@ import Home from "../../HomeArea/Home/Home";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import "./Routing.css";
 import ServerCard from "../../DataArea/ServerCard/ServerCard";
+import ShowServers from "../../DataArea/ShowServers/ShowServers";
 
 function Routing(): JSX.Element {
     return (
@@ -11,7 +12,7 @@ function Routing(): JSX.Element {
 			<Routes>
                 <Route path="/home" element={<Home />} /> 
                 <Route path="/server-list" element={<List />} />
-                <Route path="/server-card" element={<ServerCard />} />
+                <Route path="/server-card" element={<ShowServers />} />
                 <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="*" element={<PageNotFound />} />
 

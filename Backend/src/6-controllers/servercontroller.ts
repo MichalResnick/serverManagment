@@ -3,9 +3,18 @@ import logic from "../5-logic/serverlogic";
 import serverlogic from "../5-logic/serverlogic";
 import ServerModel from "../4-models/servers-model";
 
-const router = express.Router(); // Capital R
+const router = express.Router(); 
 
-// GET http://localhost:3001/api/_____
+router.get("/serversCompanies", async (request: Request, response: Response, next: NextFunction) => {
+    try {
+     const serversCompanies=await serverlogic.getAllServersCompanies()
+    response.json(serversCompanies)
+    }
+    catch (err: any) {
+        next(err);
+    }
+});
+
 router.get("/servers", async (request: Request, response: Response, next: NextFunction) => {
     try {
      const servers=await serverlogic.getAllservers()

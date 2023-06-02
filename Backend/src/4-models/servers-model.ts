@@ -6,7 +6,7 @@ class ServerModel{
     public serverIp:string
     public serverCompanyId:number
     public status:string
-    public criationTime:string
+    public creationTime:string
 
     public constructor(server:ServerModel){
         this.serverId=server.serverId
@@ -14,7 +14,7 @@ class ServerModel{
         this.serverIp=server.serverIp
         this.serverCompanyId=server.serverCompanyId
         this.status=server.status
-        this.criationTime=server.criationTime
+        this.creationTime=server.creationTime
     }
 
     public  static validationSchema=Joi.object({
@@ -23,7 +23,7 @@ class ServerModel{
         serverIp:Joi.string().required().min(2).max(40),
         serverCompanyId:Joi.number().required().positive().optional().integer(),
         status:Joi.string().required(),
-        criationTime:Joi.date().required()
+        creationTime:Joi.date().required()
 
     })
 
