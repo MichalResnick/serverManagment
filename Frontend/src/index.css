@@ -1,0 +1,4 @@
+html, body, #root {
+    height: 100%;
+    text-align: center;
+    background: linear-gradient(to top, #100765, #6473d5);}
