@@ -25,12 +25,11 @@ router.get("/servers", async (request: Request, response: Response, next: NextFu
     }
 });
 
-router.post("/server/status/:status", async (request: Request, response: Response, next: NextFunction) => {
-    //לא עובד.. לא היה לי זמן להמשיך לשבת על זה
+router.post("/server/status/:serverId", async (request: Request, response: Response, next: NextFunction) => {
     try {
-     const status=request.params.status
+     request.body.meetingId=+request.params.meetingId
      const server=new ServerModel(request.body)
-     const updetedServer=await serverlogic.changestatus(server,status)
+     const updetedServer=await serverlogic.changestatus(server)
      response.status(201).json(updetedServer)
     }
     catch (err: any) {

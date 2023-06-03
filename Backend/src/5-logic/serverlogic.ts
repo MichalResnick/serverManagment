@@ -20,19 +20,15 @@ async function getAllservers():Promise<ServerModel[]>{
     return developmentsgroup
 }
 
-async function changestatus(server:ServerModel,status:string):Promise<ServerModel>{
-    const error=server.validate()
-    if (error) throw new ValidationErrorModel(error)
+async function changestatus(server:ServerModel):Promise<ServerModel>{
+    // const error=server.validate()
+    // if (error) throw new ValidationErrorModel(error)
 
-   const sql=`UPDATE server
-   SET status = CASE 
-       WHEN ? = 'online'&& ?='offline' THEN 'offline'
-       WHEN ? = 'offline'&& ?='online' THEN 'online'
-       ELSE ?
-     END;`
-
-    const values=[server.status,status,server.status,status,server.status]
-    const info:OkPacket=await dal.execute(sql,values)
+   const sql=`UPDATE servers
+     SET status='${server.status}'
+     WHERE serverId=${server.serverId};`
+    // const values=[server.status,status,server.status,status,server.status]
+    const info:OkPacket=await dal.execute(sql)
     if(info.affectedRows===0) throw new UnauthorizedErrorModel("The update has not been carried out Check that the status has been sent correctly")
  
     return server
